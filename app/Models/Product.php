@@ -10,5 +10,6 @@ class Product extends Model
     use HasFactory;
     protected $table = 'product';
     protected $primarykey = 'id';
-    public $timestamps =false;
+    protected $foreign = 'categories_id';
+    public $timetamps = false;
 }

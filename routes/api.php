@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\ClientController;
 use App\Http\Controllers\api\CategoriesController;
 use App\Http\Controllers\api\ModePaymentController;
-use App\Models\Categories;
+use App\Http\Controllers\api\Product;
+use App\Models\ModePayment;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,10 +24,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('/client', [ClientController::class, 'index']) ->name('client');
-route::post('/client', [CategoriesController::class, 'store'])->name('client.store');
-route::delete('/client/{client}', [CategoriesController::class, 'destroy'])->name('client.destroy');
-route::get('/client/{client}', [CategoriesController::class, 'show'])->name('client.show');
-route::put('/client/{client}', [CategorieController::class, 'update'])->name('client.update');
+route::post('/client', [ClientController::class, 'store'])->name('client.store');
+route::delete('/client/{client}', [ClientController::class, 'destroy'])->name('client.destroy');
+route::get('/client/{client}', [ClientController::class, 'show'])->name('client.show');
+route::put('/client/{client}', [ClientController::class, 'update'])->name('client.update');
 
 
 
@@ -37,4 +39,13 @@ route::put('/categories/{category}', [CategorieController::class, 'update'])->na
 
 
 Route::get('/mode_payment', [ModePaymentController::class, 'index']) ->name('mode_payment');
+route::post('/mode_payment', [ModePaymentController::class, 'store'])->name('mode_payment.store');
+route::delete('/mode_payment/{mode_payment}', [ModePaymentController::class, 'destroy'])->name('mode_payment.destroy');
+route::get('/mode_payment/{mode_payment}', [ModePaymentController::class, 'show'])->name('mode_payment.show');
+route::put('/mode_payment/{mode_payment}', [ModePaymentController::class, 'update'])->name('mode_payment.update');
+
 Route::get('/product', [ProductController::class, 'index']) ->name('product');
+route::post('/product', [ProductController::class, 'store'])->name('product.store');
+route::delete('/product/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
+route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
+route::put('/product/{product}', [ProductController::class, 'update'])->name('product.update');

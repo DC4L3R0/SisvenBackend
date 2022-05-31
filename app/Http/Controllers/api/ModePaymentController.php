@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ModePayment;
+use Illuminate\Support\Facades\DB;
 
 class ModePaymentController extends Controller
 {
@@ -16,6 +17,8 @@ class ModePaymentController extends Controller
     public function index()
     {
         //
+        $mode_payment = ModePayment::all();
+        return json_encode(['mode_payment' => $mode_payment]);
     }
 
     /**
@@ -27,6 +30,13 @@ class ModePaymentController extends Controller
     public function store(Request $request)
     {
         //
+        $mode_payement = new Pay_method();
+        $mode_payment -> id = $request -> id;
+        $mode_payment -> name = $request -> name;
+        $mode_payment -> other_details = $request -> other_details;
+        $mode_payment -> save();
+
+        return json_encode(['mode_payment' => $mode_payment]);
     }
 
     /**
@@ -38,6 +48,12 @@ class ModePaymentController extends Controller
     public function show($id)
     {
         //
+        $mode_payement = ModePayment::find($id);
+        $mode_payement = db::table('mode_payment')
+        ->orderBy('id')
+        ->get();
+
+        return json_encode(['mode_payment' => $mode_payement, 'mode_payment' => $mode_payement]);
     }
 
     /**
@@ -50,6 +66,13 @@ class ModePaymentController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $mode_payment = ModePayment::find($id);
+        $mode_payement -> id = $request -> id;
+        $mode_payement -> name = $request -> name;
+        $mode_payement -> other_details = $request -> other_details;
+        $mode_payement -> save();
+
+        return json_encode(['mode_payment' => $mode_payment]);
     }
 
     /**
@@ -61,5 +84,10 @@ class ModePaymentController extends Controller
     public function destroy($id)
     {
         //
+        $mode_payment = ModePayment::find($id);
+        $mode_payment -> delete();
+
+        $mode_payment = ModePayment::all();
+        return json_encode(["mode_payment" => $mode_payment, 'success' => true]);
     }
 }

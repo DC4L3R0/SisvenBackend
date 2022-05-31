@@ -34,6 +34,7 @@ class ClientController extends Controller
         $client->id = $request->id;
         $client->name=$request->name;
         $client->surname=$request->surname;
+        $client -> adress = $request -> adress;
         $client->birth_date=$request->birth_date;
         $client->phone_number=$request->phone_number;
         $client->email=$request->email;

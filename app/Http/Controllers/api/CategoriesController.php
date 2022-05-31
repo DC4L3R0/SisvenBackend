@@ -33,7 +33,7 @@ class CategoriesController extends Controller
         $categorie->name = $request->name;
         $categorie->description = $request->description;
         $categorie->save();
-        return json_encode(['categorie' => $categorie]);
+        return json_encode(['categories' => $categories]);
     }
 
     /**
@@ -49,7 +49,7 @@ class CategoriesController extends Controller
         ->orderBy('id')
         ->get();
 
-        return json_encode(['categorie' => $categorie, 'categories' => $categories]);
+        return json_encode(['categories' => $categories, 'categories' => $categories]);
     }
 
     /**
@@ -67,7 +67,7 @@ class CategoriesController extends Controller
         $categorie->description = $request->description;
         $categorie->save();
 
-        return json_encode(['categorie' => $categorie]);
+        return json_encode(['categories' => $categories]);
     }
 
     /**
