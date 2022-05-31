@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Client;
+use Iluminate\Support\Facades\DB;
 
 
 class ClientController extends Controller
@@ -17,7 +18,7 @@ class ClientController extends Controller
     public function index()
     {
        $client = Client::all();
-       return json_encode(["client" => $client]);
+       return json_encode(['client' => $client]);
        
     }
 
@@ -29,7 +30,15 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $client = new Client();
+        $client->id = $request->id;
+        $client->name=$request->name;
+        $client->surname=$request->surname;
+        $client->birth_date=$request->birth_date;
+        $client->phone_number=$request->phone_number;
+        $client->email=$request->email;
+        $client->save();
+        return json_encode(['client' => $client]);
     }
 
     /**
@@ -41,6 +50,12 @@ class ClientController extends Controller
     public function show($id)
     {
         //
+        $client =Client::find($id);
+        $client= DB::table('client')
+        ->orderBy('id')
+        ->get();
+
+        return json_encode(['client' => $client, 'client' => $client]);
     }
 
     /**
@@ -53,6 +68,16 @@ class ClientController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $client = Client::find($id);
+        $client->id = $request -> id;
+        $client->name = $request -> name;
+        $client->surname = $request -> surname;
+        $client->adress = $request -> adress;
+        $client->birth_date = $request -> birth_date;
+        $client->phone_number = $request -> phone_number;
+        $client->email = $request -> email;
+        $client->save();
+        return json_encode(['client' =>$client]);
     }
 
     /**
@@ -64,5 +89,10 @@ class ClientController extends Controller
     public function destroy($id)
     {
         //
+        $client = Client::find($id);
+        $client->delete();
+
+        $client=Client::all();
+        return json_encode(['client' => $client, 'success' => true]);
     }
 }

@@ -22,6 +22,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('/client', [ClientController::class, 'index']) ->name('client');
+route::post('/client', [CategoriesController::class, 'store'])->name('client.store');
+route::delete('/client/{client}', [CategoriesController::class, 'destroy'])->name('client.destroy');
+route::get('/client/{client}', [CategoriesController::class, 'show'])->name('client.show');
+route::put('/client/{client}', [CategorieController::class, 'update'])->name('client.update');
+
+
 
 Route::get('/categories', [CategoriesController::class, 'index']) ->name('categories');
 route::post('/categories', [CategoriesController::class, 'store'])->name('categories.store');
